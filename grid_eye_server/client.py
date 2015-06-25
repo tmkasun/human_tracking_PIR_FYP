@@ -9,6 +9,7 @@ An example client. Run simpleserv.py first before running this.
 from twisted.internet import reactor, protocol
 import cv2
 import numpy as np
+import time
 
 
 
@@ -84,32 +85,36 @@ class EchoClient(protocol.Protocol):
 
         self.transport.write("Loop")
 
-
         pixels = data.split(',') # TODO: string values
         thermal_image = np.zeros((8,8),dtype=np.uint8)
-
+        enlarge_size = 512
+        enlarged_thermal_image = np.zeros((enlarge_size,enlarge_size),dtype=np.uint8)
+        ratio = enlarge_size/8
         for row_index in range(8):
             for column_index in range(8):
                 thermal_image[row_index][column_index] = int(round(float(pixels[row_index*8 + column_index])))
-
-
+                intensity = thermal_image[row_index][column_index]
+                for rows in range(row_index*ratio,row_index*ratio + ratio):
+                    enlarged_thermal_image[rows][column_index*ratio:column_index*ratio + ratio] = [intensity]*ratio
         # enlarged = np.zeros((128,128),dtype=np.uint8)
 
-        enlarged =  cv2.resize(thermal_image,(0,0),fx=64,fy=64)
+        # enlarged =  cv2.resize(thermal_image,(0,0),fx=64,fy=64)
 
         # cv2.imshow("Thermal snap",thermal_image)
-        cv2.imshow("Thermal_image",enlarged)
+        # cv2.imshow("Thermal_image",enlarged)
 
-        # histogram = draw_histo(thermal_image)
+        # histogram = draw_histo(enlarged_thermal_image)
         # cv2.imshow("Thermal histro",histogram)
 
 
-        histro_euqued = his_equ(enlarged)
+        histro_euqued = his_equ(enlarged_thermal_image)
         cv2.imshow("Thermal_equalized",histro_euqued)
 
 
         # print("Wait for key action")
-        cv2.waitKey(0)
+        # cv2.waitKey(0)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            reactor.stop()
         # cv2.destroyAllWindows()
         # print("Destroy all opend windows")
 
