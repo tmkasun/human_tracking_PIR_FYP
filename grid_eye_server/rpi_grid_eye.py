@@ -44,12 +44,13 @@ class Echo(protocol.Protocol):
     def dataReceived(self, data):
         "As soon as any data is received, write it back."
         # print("Received request from")
-        sensor = GridEye(0x68)
         tx_data = sensor.get_frame()
         self.transport.write(tx_data)
 
 
 def main():
+    global sensor
+    sensor = GridEye(0x68)
     """This runs the protocol on port 8000"""
     factory = protocol.ServerFactory()
     factory.protocol = Echo
