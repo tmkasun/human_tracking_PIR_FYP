@@ -46,3 +46,6 @@ class Register(object):
         if self.access_mode == AccessMode.READ_ONLY:
             raise Exception("Can't write to readonly register {} in {} address".format(self.name, self.address))
         self._i2c_connection.write_byte(self.device.address, value)
+
+
+

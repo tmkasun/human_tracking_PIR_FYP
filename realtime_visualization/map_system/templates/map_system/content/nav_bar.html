@@ -1,0 +1,43 @@
+<nav class="navbar navbar-inverse" role="navigation" style="width: 60%">
+    <div class="navbar-header">
+        <div class="navbar-icon-container">
+            <a href="#left_side_pannel" data-uk-offcanvas class="navbar-icon pull-right visible-xs"
+                    ><i class="fa fa-bars fa-lg" style="color: #FF9900"></i></a>
+            <a href="#" class="navbar-icon pull-right visible-xs"
+               onclick="$('.navbar-collapse').collapse('toggle');return false;"><i class="fa fa-search fa-lg"
+                                                                                   style="color: #FF9900"></i></a>
+        </div>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="hidden-xs"><a href="#left_side_pannel" data-uk-offcanvas>
+                <i class="fa fa-list" style="color: #FF9900"></i></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <form id="mapSearch" class="navbar-form" role="search"
+                      onsubmit="focusOnSpatialObject($(this).find('#searchbox').val());return false;">
+                    <div class="form-group has-feedback">
+                        <input autofocus="true" id="searchbox" type="text" placeholder="Search"
+                               class="form-control typeahead">
+                        <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+                    </div>
+                    <input style="visibility: hidden; position: fixed;" type="submit"/>
+                </form>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: #f9fdff;">Signed-in as: <%= user.username + "@" + user.domain  %></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target=".navbar-collapse.in"
+                           onclick="$('#aboutModal').modal('show'); return false;">About</a>
+                    </li>
+                    <li><a href="#">Doc</a></li>
+                    <li class="divider"></li>
+                    <li><a href="controllers/logout.jag">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

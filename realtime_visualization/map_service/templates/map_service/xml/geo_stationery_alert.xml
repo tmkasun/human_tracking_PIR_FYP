@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<executionPlan name="$executionPlanName" statistics="enable"
+               trace="enable" xmlns="http://wso2.org/carbon/eventprocessor">
+    <description/>
+    <siddhiConfiguration>
+        <property name="siddhi.persistence.snapshot.time.interval.minutes">0</property>
+        <property name="siddhi.enable.distributed.processing">false</property>
+    </siddhiConfiguration>
+    <importedStreams>
+        <stream as="dataIn" name="standardSpatialEvents" version="1.0.0"/>
+    </importedStreams>
+    <queryExpressions><![CDATA[from dataIn#transform.geo:subscribeExecutionPlan()
+select id, latitude, longitude, timeStamp, speed, heading, eventId,geo:withinstationery(longitude,latitude,"$geoFenceGeoJSON",id,timeStamp,$stationeryTime) as isStationery
+insert into innerStream;
+
+from innerStream[isStationery != true]
+select id , latitude, longitude,timeStamp, speed, heading ,eventId , "NORMAL" as state, "" as information
+insert into dataOut;
+
+from innerStream[isStationery == true]
+select id , latitude, longitude,timeStamp, speed, heading ,eventId , "ALERTED" as state, "This vehicle is in $stationeryName area!!!" as information
+insert into dataOut;]]></queryExpressions>
+    <exportedStreams>
+        <stream name="processedSpatialEvents" valueOf="dataOut" version="1.0.0"/>
+    </exportedStreams>
+</executionPlan>

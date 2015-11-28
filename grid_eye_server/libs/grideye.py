@@ -10,8 +10,8 @@ class GridEye(object):
     PIXEL_DATA_START_REG = 0x80
     PIXEL_DATA_LENGTH = 128
     registers = None
-    FPS_1 = 0b1
-    FPS_10 = 0b0
+    FPS_1 = 0b1 # 1 if frame rate is 1fps
+    FPS_10 = 0b0 # 0 if frame rate is 10fps
 
     # For some reason continuous i2c reads of 64 bytes and up is causing kernel
     # panic for me (buffer overflow perhaps?). Read 32 bytes at a time.
@@ -81,7 +81,7 @@ class GridEye(object):
 
             # value *= 0.25  # convert to C
             frame.append(value)
-            tx_string += str(value) + ','
+            tx_string += str(value) + ',' # TODO: Move this to network layer
 
         return tx_string[:-1]  # Remove the last comma
 

@@ -1,0 +1,112 @@
+<div class="modal" id="addTileServer" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"
+                 style="cursor: move;background: #f9f9f9;-webkit-box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.2);-moz-box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.2);box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.2);">
+                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <!-- TODO: Trigger bootstrap tooltip $('#aboutTileUrl').tooltip(); to enable tooltip -->
+                    Add tiler server URL <sup id="aboutTileUrl" style="cursor: pointer;" data-toggle="tooltip"
+                                              title="What is a tile URL?"><i class="fa fa-question"
+                                                                             style="color: #39F;"
+                                                                             data-toggle="collapse"
+                                                                             data-target="#collapseOne"></i></sup>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div id="urlInput">
+                    <div style="height: 0px;" id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>A string of the following form:</p>
+                            <pre><code class="javascript"><span class="string">'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'</span></code></pre>
+                            <p><code class="javascript">{s}</code> means one of the available subdomains (used
+                                sequentially to help with browser parallel requests per domain limitation; subdomain
+                                values are specified in options; <code class="javascript">a</code>, <code
+                                        class="javascript">b</code> or <code class="javascript">c</code> by default,
+                                can
+                                be omitted), <code class="javascript">{z}</code> — zoom level, <code
+                                        class="javascript">{x}</code>
+                                and <code class="javascript">{y}</code> — tile coordinates.</p>
+
+                            <p>You can use custom keys in the template, which will be <a
+                                    href="#util-template">evaluated</a> from TileLayer options, like this:</p>
+                            <pre><code class="javascript">L.tileLayer(<span class="string">'http://{s}.somedomain.com/{foo}/{z}/{x}/{y}.png'</span>,
+                                {foo: <span class="string">'bar'</span>});</code></pre>
+
+                        </div>
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"><i class="fa fa-italic"></i></span>
+                        <input autofocus="enable" id="tileName" type="text" class="form-control"
+                               placeholder="Tile URL name">
+                    </div>
+                    <br>
+
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <input id="tileUrl" class="form-control" type="text"
+                               placeholder="http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" onclick="addTileUrl()"><i class="fa fa-plus"></i>
+                            </button>
+                        </span>
+                    </div>
+
+                    <!-- TODO: If need show a preview of the map befor add it to backend -->
+                    <!--<h3>  TODO: ask subdomains if any, and maxZoom + Attributions </h3>-->
+
+                    <br/>
+
+                    <div class="panel panel-default" style="width: 80%;">
+                        <div>
+                            <h4 class="panel-title" style="font-size: 12px;line-height: 1.5;">
+                                <button style="text-align: left;" class="btn btn-default btn-xs btn-block collapsed"
+                                        onclick="$('.fa-chevron-right').toggleClass('fa-rotate-90')"
+                                        data-toggle="collapse" data-parent="#accordion" href="#tileUrlOptions">
+                                    <i class="fa fa-chevron-right"></i> Options
+                                </button>
+                            </h4>
+                        </div>
+                        <div style="height: 0px;" id="tileUrlOptions" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                                <div class="input-group input-group-sm col-sm-9">
+                                    <small class="text-primary">
+                                        <label class="col-sm-2 control-label" for="sub_domains">Sub-domains</label>
+                                    </small>
+                                    <input id="sub_domains" type="text" class="form-control"
+                                           placeholder="Enter sub-domains in CSV format">
+                                </div>
+
+                                <br/>
+
+                                <div class="input-group input-group-sm col-sm-9">
+                                    <small class="text-primary">
+                                        <label class="col-sm-9 control-label" for="maxzoom">Max zoom level</label>
+                                    </small>
+                                    <input id="maxzoom" type="text" class="form-control"
+                                           placeholder="Number between(around) 1~19">
+                                </div>
+                                <br/>
+
+                                <div class="input-group input-group-sm col-sm-9">
+                                    <small class="text-primary">
+                                        <label class="col-sm-2 control-label"
+                                               for="data_attribution">Attribution</label>
+                                    </small>
+                                    <input id="data_attribution" type="text" class="form-control"
+                                           placeholder="Enter attribution">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

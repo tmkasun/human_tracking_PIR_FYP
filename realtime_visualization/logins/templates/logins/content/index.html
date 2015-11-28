@@ -1,0 +1,37 @@
+{% extends 'logins/commons/header.html' %}
+{% load staticfiles %}
+{% block body %}
+
+    <script src="{% static 'logins/js/TweenLite.min.js' %}"></script>
+    <script src="{% static 'logins/js/parallax_effect.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'logins/css/parallax_effect.css' %}"/>
+
+    <div class="container">
+
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="{% static 'logins/images/avatar_2x.png' %}">
+
+            <p id="profile-name" class="profile-name-card"></p>
+
+            <form class="form-signin" action="{% url 'logins:submit'%}" method="POST">
+                {% csrf_token %}
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email" name="user_email" id="inputEmail" class="form-control" placeholder="Email address" required=""
+                       autofocus="">
+                <input type="password" name="user_password" id="inputPassword" class="form-control" placeholder="Password" required="">
+
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input name="user_remember" type="checkbox" value="True"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form>
+            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
