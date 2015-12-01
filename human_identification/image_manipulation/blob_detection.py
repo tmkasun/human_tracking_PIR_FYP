@@ -129,7 +129,8 @@ def main():
 
         # filtered_frame = opencv_blob(frame)
         # filtered_frame = backgroud_substraction(frame)
-        filtered_frame = draw_contours(frame)
+        # filtered_frame = draw_contours(frame)
+        filtered_frame = backgroud_substraction(frame)
 
         # video_output.write(filtered_frame)
         cv2.imshow("filtered_frame", filtered_frame)
