@@ -98,14 +98,13 @@
 {#    </script>#}
      <link rel="stylesheet" href="{% static 'libraries/app.css' %}">
 
-{#    <script src="{% static 'local/websocket.js' %}"></script>#}
+    <script src="{% static 'local/application_options.js' %}"></script>
     <script src="{% static 'local/geo_remote.js' %}"></script>
     <script src="{% static 'local/geo_fencing.js' %}"></script>
     <script src="{% static 'local/show_alert_in_map.js' %}"></script>
     <script src="{% static 'local/ajax_csrf_protect.js' %}"></script>
 
     <!-- Combined and compiled JS with google closure compile-->
-    <!--<script src="{% static 'local/application_options.js' %}"></script>-->
 
     <style>
         /*
@@ -166,5 +165,6 @@
 
 {% endblock %}
 
+    <script src="{% static 'local/websocket.js' %}"></script>
 </body>
 </html>

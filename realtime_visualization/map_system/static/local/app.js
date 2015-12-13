@@ -18,12 +18,12 @@ function initializeMap() {
         map.remove();
     }
     map = L.map("map", {
-        zoom: 20,
-        center: [6.797101082246444,79.90177273750305],
+        zoom: 24,
+        center: [7.07094249382,79.96429187961],
         layers: [defaultOSM],
         zoomControl: false,
         attributionControl: false,
-        //maxZoom: 22,
+        maxZoom: 29,
         //maxNativeZoom: 19,
         worldCopyJump: true
     });
@@ -228,8 +228,8 @@ initializeMap();
 
 ///static/local/faculty.json
 
-    $.getJSON("/static/local/faculty.json", function (geoJSON) {
-
+    $.getJSON("/static/local/home.json", function (geoJSON) {
+        //return false;
         var indoorLayer = new L.Indoor(geoJSON, {
             getLevel: function (feature) {
                 return 0;
@@ -239,11 +239,11 @@ initializeMap();
                 //return feature.properties.relations[0].reltags.level;
             },
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(JSON.stringify(feature.properties, null, 4));
+                //layer.bindPopup(JSON.stringify(feature.properties, null, 4));
             },
             style: function (feature) {
                 var fill = 'white';
-                console.log(feature.properties.tags["building:part"]);
+                //console.log(feature.properties.tags["building:part"]);
                 if (feature.properties.tags["building:part"] === 'corridor') {
                     fill = '#169EC6';
                 } else if (feature.properties.tags["building:part"] === 'room') {

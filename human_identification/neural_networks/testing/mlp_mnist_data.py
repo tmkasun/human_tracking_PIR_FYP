@@ -7,7 +7,6 @@ import cv2
 import theano
 import theano.tensor as T
 
-
 def mnist_summary():
     print("Shapes:")
     print(training_input.shape)
