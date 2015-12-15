@@ -2,6 +2,7 @@ from django.http.response import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render
 
 from lib.wso2.services.eventProcessorAdminService import EventProcessor
+from lib.trend_prediction import Prediction
 import os
 import re
 
@@ -10,15 +11,15 @@ from datetime import datetime
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def proximity_alert(request):
-    proximity_distance = -1  # TODO: This value should fetch from organization.globals.proximity_distance {MongoDB}
-    proximity_time = -1  # TODO: This value should fetch from organization.globals.proximity_time {MongoDB}
+def estimate_trend(request):
+    predictions = Prediction()
+    predictions.create_linear_model()
 
     context = {
-        'proximity_distance': proximity_distance,
-        'proximity_time': proximity_time,
+        'scatter_diagram': "images/figs/"+predictions.generate_scatter(),
+        'regression_line': "images/figs/"+predictions.estimate_trend_line(),
     }
-    return render(request, 'map_service/alerts/proximity.html', context=context)
+    return render(request, 'map_service/alerts/estimate_trend.html', context=context)
 
 
 def set_proximity_alert(request):

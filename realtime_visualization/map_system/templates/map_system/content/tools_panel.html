@@ -8,85 +8,46 @@
                 </a>
                 <ul class="uk-nav-sub">
                     <li style="color: #969490">
-                        Knnect connects things around you in a single click,In a nutshell,Knnect is a simple spatial
-                        object analyzing platform which was initially developed for vehicle and fleet management
-                        purpose.
-                        Knnect is an <a style="color: #007171" href="https://github.com/tmkasun/knnect">OpenSource</a>
-                        spatial object analyzing platform.
+                        X-Factor System allows users to see realtime human density.
                     </li>
                 </ul>
             </li>
-            <li class="uk-nav-header">Alerts</li>
+            <li class="uk-nav-header">Analysis</li>
             <li class="uk-parent">
-                <a href="#"><i class="fa fa-pencil-square-o"></i> Set alerts</a>
+                <a href="#"><i class="fa fa-pencil-square-o"></i> Time Series</a>
                 <ul class="uk-nav-sub">
                     <!-- Set speed limit -->
                     <li>
                         <a style="margin-left: 20%;" data-toggle="modal" href="{% url 'services:get_speed' %}"
                            data-target="#commonModal"><i
-                                class="fa fa-tachometer"></i> Speed alert</a>
+                                class="fa fa-tachometer"></i> Seasonal</a>
                     </li>
                     <li><a style="margin-left: 20%;" data-toggle="modal"
-                           href="{% url 'services:get_proximity' %}"
-                           data-target="#commonModal"><i class="fa fa-link"></i> Proximity alert</a></li>
+                           href=""
+                           data-target="#commonModal"><i class="fa fa-link"></i> Trend</a></li>
                     <li><a style="margin-left: 20%;" data-toggle="modal"
                            href="{% url 'services:get_stationery' %}" data-target="#commonModal">
-                        <i class="fa fa-chain-broken"></i> Stationary alert</a></li>
-                </ul>
-            </li>
-            <!-- Set Geo-fence -->
-            <li class="uk-parent">
-                <a href="#"><i class="fa fa-filter"></i> Geo-fencing</a>
-                <ul class="uk-nav-sub">
-                    <li><a style="margin-left: 20%;" data-toggle="modal" href="{% url 'services:get_geofence' %}"
-                           data-target="#commonModal"><i class="fa fa-square-o"></i> Within</a></li>
-                    <li><a style="margin-left: 20%;color: grey;cursor: not-allowed;"><i
-                            class="fa fa-external-link-square"></i> Approaching</a></li>
-                    <li><a style="margin-left: 20%;color: grey;cursor: not-allowed;"><i class="fa fa-minus"></i>
-                        Cross</a></li>
+                        <i class="fa fa-chain-broken"></i> Cyclic</a></li>
                 </ul>
             </li>
 
             <!-- Historical data section -->
-            <li class="uk-nav-header">Historical</li>
+            <li class="uk-nav-header">Prediction</li>
             <li class="uk-parent">
-                <a href="#"><i class="fa fa-history"></i> Show history</a>
+                <a href="#"><i class="fa fa-history"></i> Trends</a>
                 <ul class="uk-nav-sub">
-                    <!-- Set speed limit -->
-                    <li>
-                        <a style="margin-left: 20%;" data-toggle="modal" href="{% url 'services:no_service' %}"
-                           data-target="#commonModal"><i
-                                class="fa fa-ellipsis-h"></i> Recent history</a>
-                    </li>
-                    <li><a style="margin-left: 20%;" data-toggle="modal"
-                           href="{% url 'services:no_service' %}"
-                           data-target="#commonModal"><i class="fa fa-road"></i> Frequent paths</a></li>
-                    <li><a style="margin-left: 20%;" data-toggle="modal"
-                           href="{% url 'services:no_service' %}" data-target="#commonModal">
-                        <i class="fa fa-dot-circle-o"></i> Stoppages</a></li>
-                </ul>
-            </li>
-            <!-- Path Predictions -->
-            <li class="uk-parent">
-                <a href="#"><i class="fa fa-filter"></i> Path prediction</a>
-                <ul class="uk-nav-sub">
-                    <li><a style="margin-left: 20%;" data-toggle="modal" href="{% url 'services:no_service' %}"
-                           data-target="#commonModal"><i class="fa fa-code-fork"></i> Next best path</a></li>
-                    <li><a style="margin-left: 20%;color: grey;cursor: not-allowed;"><i
-                            class="fa fa-exclamation-triangle"></i> Wrong turns</a></li>
-                    <li><a style="margin-left: 20%;color: grey;cursor: not-allowed;"><i class="fa fa-eye"></i>
-                        Pass</a></li>
-                </ul>
-            </li>
 
+                    <li><a style="margin-left: 20%;" data-toggle="modal"
+                           href="{% url 'services:estimate_trend' %}"
+                           data-target="#commonModal"><i class="fa fa-road"></i> Predicted Density</a></li>
+                </ul>
+            </li>
             <!-- Settings section -->
             <li class="uk-nav-header">Settings</li>
-             <li>
-                <a data-toggle="modal" data-target="#addTileServer"><i class="fa fa-car"></i> Add new vehicle</a>
-            </li>
+
             <!-- Add new tile server url -->
             <li>
-                <a data-toggle="modal" data-target="#addTileServer"><i class="fa fa-plus"></i> Add tile server</a>
+                <a data-toggle="modal" data-target="#addTileServer"><i class="fa fa-plus"></i> Add New Camera/Sensor</a>
             </li>
             <!-- Add new WMS server url -->
             <li>

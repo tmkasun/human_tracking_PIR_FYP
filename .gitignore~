@@ -58,5 +58,3 @@ docs/_build/
 target/
 # tmkasun addition
 *.mp4v
-
-realtime_visualization/map_system/static/images/figs/

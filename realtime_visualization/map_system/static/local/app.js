@@ -18,13 +18,13 @@ function initializeMap() {
         map.remove();
     }
     map = L.map("map", {
-        zoom: 24,
+        zoom: 20,
         center: [7.07094249382,79.96429187961],
         layers: [defaultOSM],
         zoomControl: false,
         attributionControl: false,
         maxZoom: 29,
-        //maxNativeZoom: 19,
+        maxNativeZoom: 19,
         worldCopyJump: true
     });
 

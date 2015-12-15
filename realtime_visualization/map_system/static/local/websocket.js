@@ -71,7 +71,7 @@ var webSocketOnMessage = function (event) {
     density = 0;
     clear_last();
     for (var coordinates_index in coordinates_array) {
-        density+=1;
+        density += 1;
         var coordinates = coordinates_array[coordinates_index];
         var heat_layer_options = {
             radius: 50,
@@ -86,20 +86,23 @@ var webSocketOnMessage = function (event) {
 
     }
 
-    density_message.content(lhs+density+rhs);
+    density_message.content(lhs + density + rhs);
 
 
 };
 
 var lhs = "<span style='text-align: center;margin:auto; display:table;'>Population Density: <b style='color:red'>";
 var rhs = "</b></span>";
+var density_message = null;
+function show_density() {
+    density_message = $.UIkit.notify({
+        message: lhs + density + rhs,
+        status: 'success',
+        timeout: 0,
+        pos: 'top-center'
+    });
 
-var density_message = $.UIkit.notify({
-    message: lhs + density + rhs,
-    status: 'success',
-    timeout: 0,
-    pos: 'top-center'
-});
+}
 
 function initializeWebSocket() {
     websocket = new WebSocket(webSocketURL);

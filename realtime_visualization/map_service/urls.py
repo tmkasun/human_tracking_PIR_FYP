@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^speed_alert$', views.get_speed_alert, name='get_speed'),
     url(r'^set_speed_alert', views.set_speed_alert, name='set_speed'),
 
-    url(r'^proximity_alert', views.proximity_alert, name='get_proximity'),
+    url(r'^proximity_alert', views.estimate_trend, name='estimate_trend'),
     url(r'^set_proximity_alert', views.set_proximity_alert, name='set_proximity'),
 
     url(r'geofencing', views.geofence_alert, name='get_geofence'),
