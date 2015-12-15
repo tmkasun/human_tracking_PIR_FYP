@@ -10,34 +10,24 @@ from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+predictions = Prediction()
+predictions.create_linear_model()
+
 
 def estimate_trend(request):
-    predictions = Prediction()
-    predictions.create_linear_model()
-
     context = {
-        'scatter_diagram': "images/figs/"+predictions.generate_scatter(),
-        'regression_line': "images/figs/"+predictions.estimate_trend_line(),
+        'scatter_diagram': "images/figs/" + predictions.generate_scatter(),
+        'regression_line': "images/figs/" + predictions.estimate_trend_line(),
     }
     return render(request, 'map_service/alerts/estimate_trend.html', context=context)
 
 
 def set_proximity_alert(request):
-    evnt_proc = EventProcessor()
-    proximity_distance = request.POST['proximityDistance']
-    proximity_time = request.POST['proximityTime']
-    alert_template = open(
-        os.path.join(BASE_DIR, 'map_service/templates/map_service/xml/geo_proximity_alert.xml')).read()
-
-    time_placeholder = re.compile(r'\$proximityTime')
-    alert_query = time_placeholder.sub(proximity_time, alert_template)
-
-    distance_placeholder = re.compile(r'\$proximityDistance')
-    alert_query = distance_placeholder.sub(proximity_distance, alert_query)
-
-    # TODO: Check why the response is {None} object
-    response = evnt_proc.editActiveExecutionPlanConfiguration(alert_query, 'geo_proximity_alert')
-    return JsonResponse({'status': True})
+    selected_date = request.POST['selected_date']
+    date_format = "%m/%d/%Y"
+    selected_date = datetime.strptime(selected_date, date_format)
+    predicted_density = predictions.sckit_lm_predict(selected_date)
+    return JsonResponse({'predicted_density': predicted_density[0][0]})
 
 
 def get_speed_alert(request):

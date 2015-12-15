@@ -243,26 +243,7 @@ function getAlertsHistory(objectId) {
 /**
  * Send new proximity function arguments to backend
  */
-function setProximityAlert() {
-    var proximityDistance = $("#proximityDistance").val();
-    var proximityTime = $("#proximityTime").val();
-    var data = {
-        /*
-         TODO: Remove if nolonger needed, Stringify is not nessasay, Current architecture(V 1.1) do not requires execution plan parameter
-         'parseData': JSON.stringify({'proximityTime': proximityTime,'proximityDistance': proximityDistance}),
-         'executionPlan': 'proximity',
-         'customName': null,
-         'cepAction': 'edit',
-         */
-        'proximityTime': proximityTime,
-        'proximityDistance': proximityDistance
-    };
-    setAjaxNotify("Setting new Proximity alert...");
-    // TODO: Use django composer
-    $.post('/map_service/set_proximity_alert', data, function (response) {
-        setAjaxNotify("Successfully set new Proximity limit", 'success');
-    }, 'json');
-}
+
 
 function _createExecutionPlanName(queryName, id) {
 
